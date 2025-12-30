@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <!-- We only include this to explicitly loosen the CSP of various packager environments. It does not provide any security. -->
   <meta http-equiv="Content-Security-Policy" content="default-src * 'self' 'unsafe-inline' 'unsafe-eval' data: blob:">
-  <title>[2 DAYS] 2026 Countdown!</title>
+  <title>2026 Countdown!</title>
   <style>
     body {
       color: #ffffff;
@@ -111,10 +111,10 @@
       border-radius: 4px;
     }
     .control-button-highlight:hover {
-      background: #4dff5826;
+      background: #04ff0026;
     }
     .control-button-highlight.active {
-      background: #4dff5859;
+      background: #04ff0059;
     }
     .fullscreen-button {
       background: white;
@@ -129,7 +129,7 @@
       cursor: pointer;
     }
     .sc-canvas {
-      cursor: none;
+      cursor: auto;
     }
     .sc-monitor-root[data-opcode^="data_"] .sc-monitor-value-color {
       background-color: #ff8c1a;
@@ -162,7 +162,7 @@
     <noscript>Enable JavaScript</noscript>
     <h1 class="loading-text">2026 Countdown!</h1>
     
-    
+    <div class="progress-bar-outer"><div class="progress-bar-inner" id="loading-inner"></div></div>
   </div>
 
   <div id="error" class="screen" hidden>
@@ -201,7 +201,7 @@
       setProgress(0.1);
 
       const scaffolding = new Scaffolding.Scaffolding();
-      scaffolding.width = 700;
+      scaffolding.width = 480;
       scaffolding.height = 360;
       scaffolding.resizeMode = "preserve-ratio";
       scaffolding.editableLists = false;
@@ -221,10 +221,10 @@
       };
 
       scaffolding.setUsername("player####".replace(/#/g, () => Math.floor(Math.random() * 10)));
-      scaffolding.setAccentColor("#4dff58");
+      scaffolding.setAccentColor("#04ff00");
 
       try {
-        scaffolding.addCloudProvider(new Scaffolding.Cloud.WebSocketProvider(["wss://clouddata.turbowarp.org","wss://clouddata.turbowarp.xyz"], "1260353181"));
+        scaffolding.addCloudProvider(new Scaffolding.Cloud.WebSocketProvider(["wss://clouddata.turbowarp.org","wss://clouddata.turbowarp.xyz"], "p4-@2026 Countdown!.sb3"));
       } catch (error) {
         console.error(error);
       }
@@ -235,7 +235,7 @@
       if (vm.renderer.setUseHighQualityRender) vm.renderer.setUseHighQualityRender(true);
       if (vm.setRuntimeOptions) vm.setRuntimeOptions({
         fencing: false,
-        miscLimits: true,
+        miscLimits: false,
         maxClones: 9999999999,
       });
       if (vm.setCompilerOptions) vm.setCompilerOptions({
@@ -258,12 +258,6 @@
       for (const extension of []) {
         vm.extensionManager.loadExtensionURL(extension);
       }
-
-      vm.runtime.on('PROJECT_RUN_STOP', () => {
-        if (!vm.isPaused || !vm.isPaused()) {
-          window.close();
-        }
-      });
 
     } catch (e) {
       handleError(e);
